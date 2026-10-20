@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Checker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Instagram Checker</h1>
+      <p>Scopri chi segui ma non ti segue a tua volta.</p>
+      <p class="privacy">🔒 Tutto viene elaborato nel tuo browser: nessun dato lascia il tuo computer.</p>
+    </header>
+
+    <section class="card">
+      <label id="dropzone" class="dropzone" for="file-input">
+        <input id="file-input" type="file" accept=".zip,application/zip,application/x-zip-compressed" hidden />
+        <span class="dropzone-icon">📦</span>
+        <span class="dropzone-title">Trascina qui lo ZIP di Instagram</span>
+        <span class="dropzone-sub">oppure clicca per selezionarlo</span>
+        <span id="file-name" class="file-name"></span>
+      </label>
+
+      <details class="help">
+        <summary>Come ottengo il file ZIP?</summary>
+        <ol>
+          <li>Instagram → Impostazioni → <em>Centro gestione account</em> → <em>Le tue informazioni e autorizzazioni</em> → <em>Scarica le tue informazioni</em>.</li>
+          <li>Seleziona almeno <em>Follower e persone seguite</em>.</li>
+          <li>Formato: <strong>JSON</strong> (non HTML). Intervallo: <em>Sempre</em>.</li>
+          <li>Scarica lo ZIP e caricalo qui, senza estrarlo.</li>
+        </ol>
+      </details>
+
+      <div id="status" class="status" hidden></div>
+    </section>
+
+    <section id="results" class="card" hidden>
+      <div class="stats">
+        <div class="stat"><span id="count-following" class="stat-value">0</span><span class="stat-label">Seguiti</span></div>
+        <div class="stat"><span id="count-followers" class="stat-value">0</span><span class="stat-label">Follower</span></div>
+        <div class="stat stat-accent"><span id="count-result" class="stat-value">0</span><span class="stat-label">Non ti seguono</span></div>
+      </div>
+
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Cerca un utente…" autocomplete="off" />
+        <div class="downloads">
+          <button type="button" data-format="csv">⬇ CSV</button>
+          <button type="button" data-format="txt">⬇ TXT</button>
+          <button type="button" data-format="pdf">⬇ PDF</button>
+        </div>
+      </div>
+
+      <h2>Non ti seguono a tua volta</h2>
+      <ol id="result-list" class="result-list"></ol>
+      <p id="empty" class="empty" hidden></p>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
